@@ -1,0 +1,44 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n=nums.length;
+        int[] ans=new int[2];
+        int[][] a=new int[n][2];
+        int sum=0;
+        HashMapInteger, Integer map=new HashMapInteger, Integer();
+        for(int i=0;in;i++)
+        {
+            a[i][0]=i;a[i][1]=nums[i];
+        }
+        Arrays.sort(a, new Comparatorint[]() {
+            
+          @Override              
+           Compare values according to columns
+          public int compare(final int[] entry1, 
+                             final int[] entry2) {
+  
+             To sort in descending order revert 
+             the '' Operator
+            if (entry1[1]  entry2[1])
+                return 1;
+            else
+                return -1;
+          }
+        });
+        int i=0, j=n-1;
+        while(ij){
+            sum=a[i][1]+a[j][1];
+            if(sum==target){
+                ans[0]=a[i][0];
+                ans[1]=a[j][0];
+                break;
+            }
+            else if(sumtarget){
+                i++;
+            }
+            else {
+                j--;
+            }
+        }
+        return ans;
+    }
+}
