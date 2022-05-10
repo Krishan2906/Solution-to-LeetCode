@@ -1,0 +1,16 @@
+//1 2 -2 3 5 -1 7 -2 -1 -9
+//1 3 1 4 9 8 15 13 12 3
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int cursum=0, curmin=Integer.MAX_VALUE;
+        int ans=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            curmin=Math.min(curmin, cursum);
+            cursum+=nums[i];
+            //System.out.println(cursum+" "+curmin);
+            ans=Math.max(cursum-curmin, ans);
+        }
+        return ans;
+    }
+}
