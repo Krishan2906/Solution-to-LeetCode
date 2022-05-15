@@ -1,0 +1,51 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int deepestLeavesSum(TreeNode root) {
+        return deepestLeavesSum(root, 0).val;
+    }
+    
+    public Pair deepestLeavesSum(TreeNode root, int depth){
+        if(root.left==null && root.right==null){
+            return new Pair(root.val, depth);
+        }
+        if(root.left==null){
+            return deepestLeavesSum(root.right, depth+1);
+        }
+        if(root.right==null){
+            return deepestLeavesSum(root.left, depth+1);
+        }
+        Pair leftVal=deepestLeavesSum(root.left, depth+1);
+        Pair rightVal=deepestLeavesSum(root.right, depth+1);
+        if(leftVal.depth==rightVal.depth){
+            return new Pair(leftVal.val+rightVal.val, leftVal.depth);
+        }
+        if(leftVal.depth>rightVal.depth){
+            return leftVal;
+        }
+        return rightVal;
+    }
+}
+
+class Pair{
+    int val;
+    int depth;
+    
+    Pair(int val, int depth){
+        this.val=val;
+        this.depth=depth;
+    }
+}
